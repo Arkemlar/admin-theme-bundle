@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% spaceless %}
+{% trans_default_domain 'layout' %}
+{% if admin_theme_config.knp_menu.enabled %}
+	{% set breadcrumbs = knp_menu_get_breadcrumbs_array(knp_menu_get_current_item(admin_theme_config.knp_menu.main_menu)) %}
+{% endif %}
+<html>
+<head>
+	<title>
+		{% block layout_title %}Extend me in your template!{% endblock %}
+		{% if breadcrumbs is defined %}
+			|
+			{% for item in breadcrumbs|slice(1) %}
+				{{ item.label|trans({}, 'messages') ~ (loop.last ? '' : ' - ') }}
+			{% endfor %}
+		{% endif %}
+	</title>
+	{% include('ArkemlarAdminThemeBundle:Partials:_head.html.twig') %}
+	{% block layout_head %}{% endblock %}
+</head>
+<body class="{{ [ admin_theme_config.theme.skin,
+admin_theme_config.theme.fixed_layout ? 'fixed',
+admin_theme_config.theme.boxed_layout ? 'boxed',
+admin_theme_config.theme.collapsed_sidebar ? 'sidebar-collapse',
+admin_theme_config.theme.mini_sidebar ? 'sidebar-mini' ]|join(' ') }}">
+<div class="wrapper">
+	<!-- Main Header -->
+	<header class="main-header">
+
+		<!-- Logo -->
+		<a href="{{ path(admin_theme_config.routes.home) }}" class="logo">
+			<!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini">
+				{% block layout_logo_mini %}<b>A</b>LT{% endblock %}
+      </span>
+			<!-- logo for regular state and mobile devices -->
+			<span class="logo-lg">
+				{% block layout_logo_lg %} <b>Admin</b>LTE {% endblock %}
+      </span>
+		</a>
+
+		<!-- Header Navbar -->
+		<nav class="navbar navbar-static-top" role="navigation">
+			<!-- Sidebar toggle button -->
+			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+
+			<!-- Breadcrumbs -->
+			<div class="navbar-left">
+				{% block layout_breadcrumb %}
+					{% if admin_theme_config.knp_menu.enabled %}
+						{% include 'ArkemlarAdminThemeBundle:Navbar:knp-breadcrumb.html.twig' %}
+					{% endif %}
+				{% endblock %}
+			</div>
+
+
+			<!-- Navbar Right Menu -->
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+					<!-- Custom navbar elements -->
+					{% block layout_navbar_custom %}
+					{% endblock %}
+
+					{% block layout_navbar_user %}
+						{% include 'ArkemlarAdminThemeBundle:Navbar:user.html.twig' %}
+					{% endblock %}
+
+					{#{% block layout_navbar_control_sidebar_toggle %}#}
+					{#<!-- Control Sidebar Toggle Button -->#}
+					{#<li>#}
+					{#<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>#}
+					{#</li>#}
+					{#{% endblock %}#}
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar">
+
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+
+			{#{% block layout_sidebar_search %}#}
+			{#{{ render(controller('AvanzuAdminThemeBundle:Sidebar:searchForm')) }}#}
+			{#{% endblock %}#}
+
+			{% block layout_sidebar_nav %}
+				{% if admin_theme_config.knp_menu.enabled %}
+					{{ knp_menu_render(admin_theme_config.knp_menu.main_menu, { "style" : "sidebar" }) }}
+				{% endif %}
+			{% endblock %}
+
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				{% block layout_page_title %}Extend me in your template!{% endblock %}
+				<small>{% block layout_page_subtitle %}{% endblock %}</small>
+			</h1>
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			{% import 'ArkemlarAdminThemeBundle:layout:macros.html.twig' as macros %}
+			{{ macros.session_flash(true) }}
+			{% block layout_page_content %}{% endblock %}
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+	<!-- Main Footer -->
+
+	{% block layout_footer %}
+		{% include 'ArkemlarAdminThemeBundle:Partials:_footer.html.twig' %}
+	{% endblock %}
+	{#{% block layout_control_sidebar %}#}
+	{#{% include 'ArkemlarAdminThemeBundle:Partials:_control-sidebar.html.twig' %}#}
+	{#{% endblock %}#}
+</div>
+<!-- ./wrapper -->
+<!-- REQUIRED JS SCRIPTS -->
+
+{% include 'ArkemlarAdminThemeBundle:Partials:_scripts.html.twig' %}
+{% block layout_javascripts %}{% endblock %}
+{% block layout_javascripts_inline %}{% endblock %}
+
+</body>
+</html>
+{% endspaceless %}

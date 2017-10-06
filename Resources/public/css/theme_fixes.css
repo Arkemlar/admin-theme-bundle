@@ -1,0 +1,58 @@
+/*Breadcrumbs fix*/
+.breadcrumb {
+    padding: 14px 15px;
+    margin-bottom: 0;
+    list-style: none;
+    border-radius: 0;
+    font-size: 16px;
+}
+.breadcrumb>li+li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "\2771";
+}
+/*Checkboxes fix*/
+.checkbox label, .radio label {
+    padding-left: 0;
+}
+.icheckbox, .iradio {
+    margin-right: 3px;
+}
+/*Bootstrap collections displaying fix*/
+.bc-collection {
+    margin: 10px 0;
+}
+.bc-collection > li {
+    margin: 5px 0;
+}
+/*Displaying form hints and errors in inline mode fix*/
+.form-inline > * > .help-block {
+    display: inline-table;
+    vertical-align: middle;
+    list-style-type: none;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+/*Displaying box subtitle fix*/
+.box-header .box-title small {
+    margin-left: 5px;
+}
+/*Fix tab padding*/
+.nav.nav-tabs~.tab-content {
+    padding-top: 10px;
+}
+
+/*Fix select2 input field margin when using custom templates with bigger lines height*/
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+    margin-bottom: 5px;
+}
+/*Make close icon to be on the right side*/
+.select2-selection__choice__remove {
+    float: right;
+    margin-right: 0;
+    margin-left: 3px;
+}
+/*Fix select2 input field*/
+.select2-container .select2-selection--single .select2-selection__rendered {
+    margin-top: 0;
+}

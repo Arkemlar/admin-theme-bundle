@@ -1,0 +1,8 @@
+parameters:
+    arkemlar_admin_theme.config_helper.class: Arkemlar\Admin\ThemeBundle\Helper\ConfigHelper
+
+services:
+    arkemlar_admin_theme.context_helper:
+        class: "%arkemlar_admin_theme.config_helper.class%"
+        arguments:
+            - "%arkemlar_admin_theme.config%"

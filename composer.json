@@ -1,0 +1,26 @@
+{
+    "name": "arkemlar/admin-theme-bundle",
+    "description": "AdminLTE theme integration into symfony framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yanosh Fenveshi",
+            "email": "arkemlar@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1",
+        "symfony/http-kernel": "^3.0",
+        "symfony/dependency-injection": "^3.0",
+        "symfony/config": "^3.0",
+        "almasaeed2010/adminlte": "^2.3",
+        "braincrafted/bootstrap-bundle": "^2.2"
+    },
+    "suggest" : {
+        "knplabs/knp-menu-bundle" : "Allows menu integration."
+    },
+    "autoload": {
+        "psr-4": { "Arkemlar\\Admin\\ThemeBundle\\": "" }
+    }
+}

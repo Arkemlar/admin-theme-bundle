@@ -1,0 +1,10 @@
+parameters:
+    knp_menu.twig.extension.class: Arkemlar\Admin\ThemeBundle\KnpMenu\MenuTwigExtension
+    arkemlar_admin_theme.knp_menu.menu_builder_helper.class: Arkemlar\Admin\ThemeBundle\KnpMenu\MenuBuilderHelper
+
+services:
+    arkemlar_admin_theme.knp_menu.menu_builder_helper:
+        class: "%arkemlar_admin_theme.knp_menu.menu_builder_helper.class%"
+        arguments: ['@request_stack', '@router']
+        calls:
+            - ['addExtension', ['@knp_menu.factory_extension.routing']]

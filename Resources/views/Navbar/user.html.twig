@@ -1,0 +1,40 @@
+<!-- User Account: style can be found in dropdown.less -->
+{% trans_default_domain 'layout' %}
+{% import "ArkemlarAdminThemeBundle:layout:macros.html.twig" as macro %}
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        {{ macro.avatar(app.user.avatarPath, app.user.company, 'user-image') }}
+        <span class="hidden-xs">{{ app.user.company }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            {{ macro.avatar(app.user.avatarPath, app.user.company) }}
+            <p>
+                {{app.user.company}} - {{app.user.description}}
+                {#<small>{{ 'Member since %date%'|trans({'%date%': user.getCreated|date('m.Y') }, 'layout') }}</small>#}
+            </p>
+        </li>
+        {#<!-- Menu Body -->#}
+        {#<li class="user-body">#}
+            {#<div class="col-xs-4 text-center">#}
+                {#<a href="#">Followers</a>#}
+            {#</div>#}
+            {#<div class="col-xs-4 text-center">#}
+                {#<a href="#">Sales</a>#}
+            {#</div>#}
+            {#<div class="col-xs-4 text-center">#}
+                {#<a href="#">Friends</a>#}
+            {#</div>#}
+        {#</li>#}
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ path(admin_theme_config.routes.profile, {'user' : app.user.id}) }}" class="btn btn-default btn-flat">{{'profile'|trans}}</a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ logout_path() }}" class="btn btn-default btn-flat">{{ 'logout'|trans }}</a>
+            </div>
+        </li>
+    </ul>
+</li>

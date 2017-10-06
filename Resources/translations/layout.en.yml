@@ -1,0 +1,23 @@
+logout: Sign out
+login: Sign In
+login_title: System sign in
+username: Username (email)
+password: Password
+remember_me: Remember Me
+password.repeat: Password repeat
+password.forgoten: I forgot my password
+password.reset: Password reset
+reset: Reset
+athentication: Athentication
+
+profile: Profile
+
+confirm_deletion: Please confirm deletion
+
+accept: Accept
+deny: Deny
+back: Back
+continue: Continue
+collapse: Collapse
+remove: Remove
+confirm: Confirm

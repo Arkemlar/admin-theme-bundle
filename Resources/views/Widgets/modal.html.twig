@@ -1,0 +1,26 @@
+{% set style = style is defined ? 'modal-'~style : '' %}
+
+<div class="modal fade" tabindex="-1" id="{{ id }}">
+	<div class="modal-dialog modal-{{ size|default('md') }} {{ style }}" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				{% if dismiss|default(true) %}
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{% endif %}
+				<h4 class="modal-title">{% block modal_title %}{{ 'confirm_deletion'|trans({}, 'layout') }}{% endblock %}</h4>
+			</div>
+			{% if block('modal_body') is defined %}
+				<div class="modal-body">
+					{{ block('modal_body') }}
+				</div>
+			{% endif %}
+			{% if use_footer|default(true) %}
+				<div class="modal-footer">
+					{% block modal_footer %}
+						<button type="button" class="btn {{ style ? 'btn-outline' : 'btn-default' }}" data-dismiss="modal">{{ 'deny'|trans({}, 'layout') }}</button>
+					{% endblock %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>

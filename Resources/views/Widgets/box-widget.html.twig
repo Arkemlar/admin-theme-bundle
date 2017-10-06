@@ -1,0 +1,79 @@
+{% import 'ArkemlarAdminThemeBundle:layout:macros.html.twig' as button %}
+{#
+Options list:
+- collapsed - bool
+- collapsible - bool
+- collapsible_title - string
+- removable - bool
+- removable_title - string
+- boxtype - string
+- solid - bool
+- border - bool
+- use_header - bool
+- use_footer - bool
+Blocks list:
+- box_before
+- box_header
+-- box_title
+-- box_heading
+-- box_tools
+- box_body
+- box_footer
+- box_after
+#}
+
+{% set collapsed = collapsed ?? false %}
+
+{% if block('box_before') is defined %}
+	{{ block('box_before') }}
+{% endif %}
+<div class="box box-{{ boxtype ?? admin_theme_config.theme.widget.type }}{{ solid ?? admin_theme_config.theme.widget.solid ? ' box-solid' : '' }}{{ collapsed ? ' collapsed-box' : '' }}">
+    {% if use_header ?? admin_theme_config.theme.widget.use_header %}
+        <div class="box-header{{ border ?? admin_theme_config.theme.widget.bordered ? ' with-border' : '' }}">
+            {% block box_header %}
+                {% if icon is defined %}
+                    <i class="fa fa-{{ icon }}"></i>
+                {% endif %}
+                {% if block('box_title') is defined %} {#TODO преобразовать блок в аргумент#}
+                    <h3 class="box-title">{{ block('box_title') }}</h3>
+                {% endif %}
+                {% if block('box_heading') is defined %}
+                  {{ block('box_heading') }}
+                {% endif %}
+                <div class="box-tools pull-right">
+                    {% if block('box_tools') is defined %}
+                        {{ block('box_tools') }}
+                    {% endif %}
+                    <!-- Buttons, labels, and many other things can be placed here! -->
+                    {% if collapsible ?? (collapsed or admin_theme_config.theme.widget.collapsible) %}
+                        {{ button.action_toolbutton(
+                            collapsed ? 'plus'  : 'minus' ,
+                            'collapse',
+                            collapsible_title ?? admin_theme_config.theme.widget.collapsible_title|trans({}, 'layout')
+                        ) }}
+                    {% endif %}
+
+                    {% if removable ?? admin_theme_config.theme.widget.collapsible %}
+                        {{ button.action_toolbutton(
+                        'times',
+                        'remove',
+                        removable_title ?? admin_theme_config.theme.widget.removable_title|trans({}, 'layout')
+                        ) }}
+                    {% endif %}
+
+                </div><!-- /.box-tools -->
+            {% endblock %}
+        </div><!-- /.box-header -->
+    {% endif %}
+    {% if block('box_body') is defined %}
+        <div class="box-body">{{ block('box_body') }}</div><!-- /.box-body -->
+    {% endif %}
+    {% if block('box_footer') is defined and (use_footer ?? admin_theme_config.theme.widget.use_footer) %}
+        <div class="box-footer">
+          {{ block('box_footer') }}
+        </div><!-- box-footer -->
+    {% endif %}
+</div><!-- /.box -->
+{% if block('box_after') is defined %}
+    {{ block('box_after') }}
+{% endif %}

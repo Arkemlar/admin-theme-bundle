@@ -1,0 +1,23 @@
+logout: Выйти
+login: Войти
+login_title: Вход в систему
+username: Имя пользователя (email)
+password: Пароль
+remember_me: Запомнить меня
+password.repeat: Повтор пароля
+password.forgoten: Я не помню пароль
+password.reset: Сброс пароля
+reset: Сборсить
+athentication: Аутентификация
+
+profile: Профиль
+
+confirm_deletion: Пожалуйста подтвердите удаление
+
+accept: Принять
+deny: Отменить
+back: Назад
+continue: Продолжить
+collapse: Свернуть
+remove: Удалить
+confirm: Подтвердить
